@@ -113,16 +113,6 @@ func GCMDecrypt(key, nonce, ciphertext []byte) ([]byte, error) {
 	return aesgcm.Open(nil, nonce, ciphertext, nil)
 }
 
-// Base64Encode returns the base64 encoding of src.
-func Base64Encode(src []byte) string {
-	return base64.StdEncoding.EncodeToString(src)
-}
-
-// Base64Decode returns the bytes represented by the base64 string s.
-func Base64Decode(s string) ([]byte, error) {
-	return base64.StdEncoding.DecodeString(s)
-}
-
 // IsEncryptedString a string is considered "encrypted" when it appears surrounded by ENC(...).
 func IsEncryptedString(s string) bool {
 	if len(s) == 0 || s == "" {
@@ -139,11 +129,11 @@ func InnerEncryptedString(s string) string {
 
 // Base64DecodeInnerEncryptedString returns the bytes represented by the base64 inner "encrypted string" surrounded by ENC(...).
 func Base64DecodeInnerEncryptedString(s string) ([]byte, error) {
-	return Base64Decode(InnerEncryptedString(s))
+	return base64.StdEncoding.DecodeString(InnerEncryptedString(s))
 }
 
 // Base64EncodeEncryptedString returns the base64 encoding of "encrypted string" surrounded by ENC(...).
 func Base64EncodeEncryptedString(src []byte) string {
-	s := Base64Encode(src)
+	s := base64.StdEncoding.EncodeToString(src)
 	return fmt.Sprintf("%v%v%v", encryptedStringPrefix, s, encryptedStringSuffix)
 }

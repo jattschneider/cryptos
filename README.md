@@ -14,6 +14,7 @@ import (
 	"flag"
 	"fmt"
 
+	"encoding/base64"
 	"github.com/jattschneider/cryptos"
 )
 
@@ -24,12 +25,12 @@ func init() {
 func main() {
 	
 	// 32 bytes Key
-	key, err := cryptos.Base64Decode("lJVRh3lGtxZwlwplx+Wz9XbJSEouhfcPKmYbBM45ODE=")
+	key, err := base64.StdEncoding.DecodeString("lJVRh3lGtxZwlwplx+Wz9XbJSEouhfcPKmYbBM45ODE=")
 	if err != nil {
 		return
 	}
 	// 12 bytes Nonce
-	nonce, err := cryptos.Base64Decode("hoOLlooQPN21ufCy")
+	nonce, err := base64.StdEncoding.DecodeString("hoOLlooQPN21ufCy")
 	if err != nil {
 		return
 	}
@@ -43,7 +44,7 @@ func main() {
 	
 	// AES-256
 	// "ENC(cLqUafMcfzJOt3FyOLmIAqwVJJAoXj3o3h3cZrM4EIo=)"
-	if !IsEncryptedString(es) {
+	if !cryptos.IsEncryptedString(es) {
 		return
 	}
 

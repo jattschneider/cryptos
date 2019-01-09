@@ -1,6 +1,7 @@
 package cryptos
 
 import (
+	"encoding/base64"
 	"fmt"
 	"testing"
 )
@@ -13,7 +14,7 @@ func TestShouldGenerateKey32GivenPassword(t *testing.T) {
 	if len(key) != 32 {
 		t.Error("Incorrect key len")
 	}
-	fmt.Printf("key32: %v\n", Base64Encode(key))
+	fmt.Printf("key32: %v\n", base64.StdEncoding.EncodeToString(key))
 }
 
 func TestShouldGenerateKey16GivenPassword(t *testing.T) {
@@ -24,7 +25,7 @@ func TestShouldGenerateKey16GivenPassword(t *testing.T) {
 	if len(key) != 16 {
 		t.Error("Incorrect key len")
 	}
-	fmt.Printf("key16: %v\n", Base64Encode(key))
+	fmt.Printf("key16: %v\n", base64.StdEncoding.EncodeToString(key))
 }
 
 func TestShouldGenerateNonce(t *testing.T) {
@@ -32,7 +33,7 @@ func TestShouldGenerateNonce(t *testing.T) {
 	if err != nil {
 		t.Error("Cannot generate a nonce")
 	}
-	fmt.Printf("nonce: %v\n", Base64Encode(nonce))
+	fmt.Printf("nonce: %v\n", base64.StdEncoding.EncodeToString(nonce))
 }
 
 func TestShouldBeAnEncryptString(t *testing.T) {
@@ -164,11 +165,11 @@ func TestShouldEncryptAndDecryptGivenKey16(t *testing.T) {
 }
 
 func TestShouldEncrypt(t *testing.T) {
-	key, err := Base64Decode("lJVRh3lGtxZwlwplx+Wz9XbJSEouhfcPKmYbBM45ODE=")
+	key, err := base64.StdEncoding.DecodeString("lJVRh3lGtxZwlwplx+Wz9XbJSEouhfcPKmYbBM45ODE=")
 	if err != nil {
 		t.Error("Cannot generate a key")
 	}
-	nonce, err := Base64Decode("hoOLlooQPN21ufCy")
+	nonce, err := base64.StdEncoding.DecodeString("hoOLlooQPN21ufCy")
 	if err != nil {
 		t.Error("Cannot generate a nonce")
 	}
@@ -186,11 +187,11 @@ func TestShouldEncrypt(t *testing.T) {
 }
 
 func TestShouldDecrypt(t *testing.T) {
-	key, err := Base64Decode("lJVRh3lGtxZwlwplx+Wz9XbJSEouhfcPKmYbBM45ODE=")
+	key, err := base64.StdEncoding.DecodeString("lJVRh3lGtxZwlwplx+Wz9XbJSEouhfcPKmYbBM45ODE=")
 	if err != nil {
 		t.Error("Cannot generate a key")
 	}
-	nonce, err := Base64Decode("hoOLlooQPN21ufCy")
+	nonce, err := base64.StdEncoding.DecodeString("hoOLlooQPN21ufCy")
 	if err != nil {
 		t.Error("Cannot generate a nonce")
 	}
