@@ -69,12 +69,10 @@ go get -v github.com/jattschneider/cryptos
 ## Built With
 
 * [Go](https://golang.org/) - The Go Programming Language
-* [dep](https://golang.github.io/dep/) - Dependency management for Go
-* [glog](https://github.com/golang/glog) - Leveled execution logs for Go
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/jattschneider/config/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/jattschneider/cryptos/tags). 
 
 ## Authors
 
